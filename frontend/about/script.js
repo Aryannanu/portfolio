@@ -186,7 +186,7 @@ async function getProjects(){
 
                 <img
                 src=
-                "http://localhost:5008/${project.image}"
+                "${project.image}"
                 alt="">
 
             </div>
