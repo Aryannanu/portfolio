@@ -25,8 +25,7 @@ const resumeSchema = new mongoose.Schema({
     ],
     skills: [
         {
-            name: String,
-            level: Number
+            name: String
         }
     ]
 },

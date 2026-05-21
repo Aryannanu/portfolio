@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 
-const projectSchema =
-new mongoose.Schema(
+const projectSchema = new mongoose.Schema(
 {
     developerId: {
         type:
         mongoose.Schema.Types.ObjectId,
-
         ref: "Developer",
-
         required: true
     },
 

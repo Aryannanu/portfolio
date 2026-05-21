@@ -1,3 +1,34 @@
+function showPage(pageId){
+    document.getElementById("about-page").classList.add("hidden");
+    document.getElementById("resume-page").classList.add("hidden");
+    document.getElementById("portfolio-page").classList.add("hidden");
+    document.getElementById("blog-page").classList.add("hidden");
+    document.getElementById("contact-page").classList.add("hidden");
+    document.getElementById(pageId).classList.remove("hidden");
+
+    document.getElementById("about-btn").classList.remove("active");
+    document.getElementById("resume-btn").classList.remove("active");
+    document.getElementById("portfolio-btn").classList.remove("active");
+    document.getElementById("blog-btn").classList.remove("active");
+    document.getElementById("contact-btn").classList.remove("active");
+
+    if(pageId == "about-page"){
+        document.getElementById("about-btn").classList.add("active");
+    }
+    if(pageId == "resume-page"){
+        document.getElementById("resume-btn").classList.add("active");
+    }
+    if(pageId == "portfolio-page"){
+        document.getElementById("portfolio-btn").classList.add("active");
+    }
+    if(pageId == "blog-page"){
+        document.getElementById("blog-btn").classList.add("active");
+    }
+    if(pageId == "contact-page"){
+        document.getElementById("contact-btn").classList.add("active");
+    }
+}
+
 
 async function fetchApi() {
     const response = await fetch("http://localhost:5008/developer/get/6a0807cd131d3bd8a401cdd0",{
@@ -147,78 +178,41 @@ getContact();
 
 
 async function getProjects(){
-
-    const response =
-    await fetch(
-    "http://localhost:5008/project/get/6a0807cd131d3bd8a401cdd0"
-    );
-
-    const projects =
-    await response.json();
-
+    const response =await fetch("http://localhost:5008/project/get/6a0807cd131d3bd8a401cdd0");
+    const projects = await response.json();
     console.log(projects);
-
-    const container =
-    document.getElementById(
-    "project-container"
-    );
-
+    const container = document.getElementById("project-container");
     projects.forEach(
     (project)=>{
-
         let techHtml = "";
-
         project.techStack
         .forEach((tech)=>{
-
             techHtml += `
             <div class="tech">
                 ${tech}
             </div>
             `;
         });
-
         container.innerHTML += `
-
         <div class="project-card">
-
             <div class="project-image">
-
-                <img
-                src=
-                "${project.image}"
-                alt="">
-
+                <img src="${project.image}" alt="">
             </div>
-
             <div class="project-content">
-
                 <div class="project-title">
                     ${project.title}
                 </div>
-
                 <div class="project-desc">
                     ${project.description}
                 </div>
-
                 <div class="tech-stack">
                     ${techHtml}
                 </div>
-
-                <a
-                class="github-btn"
-                href=
-                "${project.githubLink}"
-                target="_blank">
-
+                <a class="github-btn" href= "${project.githubLink}" target="_blank">
                     GitHub
-
                 </a>
-
             </div>
-
         </div>
-
         `;
     });
 }
